@@ -6,7 +6,8 @@ import SignIn from "./pages/signin";
 import HomePage from "./pages/homepage";
 import ErrorPage from "./pages/errorpage";
 import Notice from "./pages/notice";
-import Dashboard from "./pages/dashboard"
+import Dashboard from "./pages/dashboard";
+import SignUp from "./pages/signup";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
   },
 ]);
 

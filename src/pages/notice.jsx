@@ -30,7 +30,7 @@ const Notice = () => {
 
           <h1 className="font-lato text-base font-bold text-indigo-600 sm:text-lg md:text-xl mb-3
             transition-all duration-300 hover:text-indigo-800">
-            How <span className="text-gray-800">MVC Attendance System</span> Works
+            How <span className="text-gray-800"> MyDreamConnect Attendance System</span> Works
           </h1>
 
           <div className="mt-3 p-3 bg-white rounded-lg shadow-lg space-y-2
