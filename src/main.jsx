@@ -8,6 +8,9 @@ import ErrorPage from "./pages/errorpage";
 import Notice from "./pages/notice";
 import Dashboard from "./pages/dashboard";
 import SignUp from "./pages/signup";
+import AdminSignIn from "./pages/admin";
+import AdminDashboard from "./pages/adminDashboard";
+
 
 const router = createBrowserRouter([
   {
@@ -34,6 +37,14 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <SignUp />,
   },
+  {
+    path: "/admin",
+    element: <AdminSignIn />,
+  },
+  {
+    path:"/admin-dashboard",
+    element: <AdminDashboard />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

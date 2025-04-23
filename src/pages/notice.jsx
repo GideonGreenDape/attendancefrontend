@@ -32,7 +32,6 @@ const Notice = () => {
             transition-all duration-300 hover:text-indigo-800">
             How <span className="text-gray-800"> MyDreamConnect Attendance System</span> Works
           </h1>
-
           <div className="mt-3 p-3 bg-white rounded-lg shadow-lg space-y-2
             transform transition-all duration-300 hover:scale-105">
             <motion.p 
