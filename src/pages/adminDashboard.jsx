@@ -25,7 +25,7 @@ const AdminDashboard = () => {
   
     const fetchStudentData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/fetchallstudentattendance');
+        const response = await axios.get('https://attendancebackend-gjjw.onrender.com/fetchallstudentattendance');
         if (response.data.success) {
           setStudents(response.data.data);
         }
@@ -38,7 +38,7 @@ const AdminDashboard = () => {
       setLoading(true);
       setError('');
       try {
-        const response = await axios.post('http://localhost:3000/generatelink/');
+        const response = await axios.post('https://attendancebackend-gjjw.onrender.com/generatelink/');
         const baseUrl = window.location.origin;
         setTemporaryLink(`${baseUrl}/${response.data.token}`);
         setExpiresAt(new Date(response.data.expiresAt).toLocaleTimeString());

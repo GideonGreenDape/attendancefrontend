@@ -29,7 +29,7 @@ const SignUp = () => {
     setSuccess("");
 
     try {
-      const response = await axios.post("http://localhost:3000/signup", formData);
+      const response = await axios.post("https://attendancebackend-gjjw.onrender.com/signup", formData);
       
       if (response.data.success) {
         setSuccess(response.data.message);

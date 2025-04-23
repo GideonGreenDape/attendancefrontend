@@ -33,7 +33,7 @@ const Dashboard = () => {
           console.log('Using student_id:', parsedDetails.student_id);
 
           const response = await axios.get(
-            `http://localhost:3000/performance/check/${parsedDetails.student_id}`
+            `https://attendancebackend-gjjw.onrender.com/performance/check/${parsedDetails.student_id}`
           );
           console.log('Check Response:', response.data); 
           setHasMarked(response.data.data.hasMarked);
@@ -41,7 +41,7 @@ const Dashboard = () => {
 
           // Get total attendance with corrected property name
           const perfResponse = await axios.get(
-            `http://localhost:3000/performance/${parsedDetails.student_id}`
+            `https://attendancebackend-gjjw.onrender.com/performance/${parsedDetails.student_id}`
           );
           setTotalAttendance(perfResponse.data.data.totalDays); // Changed from totalAttendance to totalDays
           console.log('Performance Response:', perfResponse.data); // Add logging for debugging
@@ -68,7 +68,7 @@ const Dashboard = () => {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:3000/mark', {
+      const response = await axios.post('https://attendancebackend-gjjw.onrender.com/mark', {
         student_id: userDetails.student_id,
         department: userDetails.department
       });

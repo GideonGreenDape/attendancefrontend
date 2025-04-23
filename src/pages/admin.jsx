@@ -24,7 +24,7 @@ const AdminSignIn = () => {
     setError("");
 
     try {
-      const response = await axios.post("http://localhost:3000/adminlog", formData);
+      const response = await axios.post("https://attendancebackend-gjjw.onrender.com/adminlog", formData);
       
       if (response.status === 200) {
         // Store admin details in localStorage

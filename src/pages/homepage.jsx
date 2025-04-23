@@ -11,7 +11,7 @@ const HomePage = () => {
   useEffect(() => {
     const checkLinkValidity = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/validatelink/${id}`);
+        const response = await axios.get(`https://attendancebackend-gjjw.onrender.com/validatelink/${id}`);
         
         if (response.data.valid) {
           // Store the valid ID in localStorage

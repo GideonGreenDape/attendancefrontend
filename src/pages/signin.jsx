@@ -34,7 +34,7 @@ const SignIn = () => {
     setError("");
 
     try {
-      const response = await axios.post("http://localhost:3000/signin", {
+      const response = await axios.post("https://attendancebackend-gjjw.onrender.com/signin", {
         student_id: formData.student_id,
         password: formData.password,
       });
@@ -69,7 +69,7 @@ const SignIn = () => {
       <div className="max-w-md w-full space-y-8">
         <div>
           <h1 className="font-lato text-center text-lg sm:text-3xl font-bold text-indigo-600">
-            MVC Cohort 3 Attendance System
+          MyDreamConnect Cohort 3 Attendance System
           </h1>
           <h2 className="font-lato mt-8 text-center text-base sm:text-xl font-extrabold text-gray-700">
             Sign in to your account
