@@ -10,8 +10,13 @@ import Dashboard from "./pages/dashboard";
 import SignUp from "./pages/signup";
 import AdminSignIn from "./pages/admin";
 import AdminDashboard from "./pages/adminDashboard";
+import GeneralPage from "./pages/generalpage";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <GeneralPage />,
+  },
   {
     path: "/signin",
     element: <SignIn />,
