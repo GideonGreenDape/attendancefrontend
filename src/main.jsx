@@ -42,12 +42,12 @@ const router = createBrowserRouter([
     element: <AdminDashboard />,
   },
   {
-    path: "/:id",
-    element: <HomePage />,
-  },
-  {
     path: "*",
     element: <ErrorPage />,
+  },
+  {
+    path: "/link/:id",
+    element: <HomePage />,
   },
 ]);
 
