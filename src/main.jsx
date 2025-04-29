@@ -11,19 +11,10 @@ import SignUp from "./pages/signup";
 import AdminSignIn from "./pages/admin";
 import AdminDashboard from "./pages/adminDashboard";
 
-
 const router = createBrowserRouter([
-  {
-    path: "*",
-    element: <ErrorPage />,
-  },
   {
     path: "/signin",
     element: <SignIn />,
-  },
-  {
-    path: "/:id",
-    element: <HomePage />,
   },
   {
     path: "/notice",
@@ -42,9 +33,17 @@ const router = createBrowserRouter([
     element: <AdminSignIn />,
   },
   {
-    path:"/admin-dashboard",
+    path: "/admin-dashboard",
     element: <AdminDashboard />,
-  }
+  },
+  {
+    path: "/:id",
+    element: <HomePage />,
+  },
+  {
+    path: "*",
+    element: <ErrorPage />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
