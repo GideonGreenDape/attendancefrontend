@@ -12,14 +12,7 @@ const SignIn = () => {
   const [loading, setLoading] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
 
-  useEffect(() => {
-    const validLinkId = localStorage.getItem("validLinkId");
-    if (!validLinkId) {
-      navigate("/notice");
-    } else {
-      setIsInitialized(true);
-    }
-  }, []);
+
 
   const handleChange = (e) => {
     setFormData({

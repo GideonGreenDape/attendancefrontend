@@ -11,6 +11,7 @@ import SignUp from "./pages/signup";
 import AdminSignIn from "./pages/admin";
 import AdminDashboard from "./pages/adminDashboard";
 import GeneralPage from "./pages/generalpage";
+import SoftLinkPage from "./pages/softlinkpage";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: "/link/:id",
     element: <HomePage />,
+  },
+  {
+    path: "/softlink/:id",
+    element: <SoftLinkPage />,
   },
 ]);
 
