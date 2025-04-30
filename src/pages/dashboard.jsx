@@ -22,7 +22,10 @@ const Dashboard = () => {
   const [softSkillMarkingTime, setSoftSkillMarkingTime] = useState(null);
   const [markingSoftSkill, setMarkingSoftSkill] = useState(false);
   const [softSkillMessage, setSoftSkillMessage] = useState("");
+  const [softSkillTotalAttendance, setSoftSkillTotalAttendance] = useState(0);
+
   // First useEffect to get user details
+
   useEffect(() => {
     try {
       const details = localStorage.getItem("userDetails");
@@ -36,22 +39,40 @@ const Dashboard = () => {
       // Move the status check here
       const checkStatus = async () => {
         try {
-          // Log the student_id being used in the request
-          console.log("Using student_id:", parsedDetails.student_id);
-
+          // Regular attendance check
           const response = await axios.get(
             `https://attendancebackend-gjjw.onrender.com/performance/check/${parsedDetails.student_id}`
           );
-          console.log("Check Response:", response.data);
+          console.log("Regular Check Response:", response.data);
           setHasMarked(response.data.data.hasMarked);
           setMarkingTime(response.data.data.timestamp);
 
-          // Get total attendance with corrected property name
+          // Regular attendance performance
           const perfResponse = await axios.get(
             `https://attendancebackend-gjjw.onrender.com/performance/${parsedDetails.student_id}`
           );
-          setTotalAttendance(perfResponse.data.data.totalDays); // Changed from totalAttendance to totalDays
-          console.log("Performance Response:", perfResponse.data); // Add logging for debugging
+          setTotalAttendance(perfResponse.data.data.totalDays);
+          console.log("Regular Performance Response:", perfResponse.data);
+
+          // Soft skills attendance check
+          const softSkillResponse = await axios.get(
+            `https://attendancebackend-gjjw.onrender.com/softskillperformance/check/${parsedDetails.student_id}`
+          );
+          console.log("Soft Skills Check Response:", softSkillResponse.data);
+          setSoftSkillHasMarked(softSkillResponse.data.data.hasMarked);
+          setSoftSkillMarkingTime(softSkillResponse.data.data.timestamp);
+
+          // Soft skills attendance performance
+          const softSkillPerfResponse = await axios.get(
+            `https://attendancebackend-gjjw.onrender.com/softskillperformance/${parsedDetails.student_id}`
+          );
+          setSoftSkillTotalAttendance(
+            softSkillPerfResponse.data.data.totalDays
+          );
+          console.log(
+            "Soft Skills Performance Response:",
+            softSkillPerfResponse.data
+          );
         } catch (err) {
           console.error("API Error:", err);
           setError("Failed to fetch attendance status");
@@ -313,6 +334,26 @@ const Dashboard = () => {
               className="text-3xl font-bold text-indigo-600"
             >
               {totalAttendance}
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="bg-white rounded-lg shadow-lg p-6"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold font-lato text-gray-800">
+                Total Soft Skills Attendance
+              </h2>
+              <ClipboardDocumentCheckIcon className="h-6 w-6 text-purple-500" />
+            </div>
+            <motion.div
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 0.5 }}
+              className="text-3xl font-bold text-purple-600"
+            >
+              {softSkillTotalAttendance}
             </motion.div>
           </motion.div>
         </div>
