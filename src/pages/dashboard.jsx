@@ -174,19 +174,19 @@ const Dashboard = () => {
   // Add this new function after markAttendance
   const markSoftSkillAttendance = async () => {
     if (!userDetails) return;
-
+  
     setMarkingSoftSkill(true);
     setError("");
     setSoftSkillMessage("");
-
+  
     try {
       const isValidLink = await validateSoftSkillLink();
-
+  
       if (!isValidLink) {
         setMarkingSoftSkill(false);
         return;
       }
-
+  
       const response = await axios.post(
         "https://attendancebackend-gjjw.onrender.com/softskillmark",
         {
@@ -194,12 +194,11 @@ const Dashboard = () => {
           department: userDetails.department,
         }
       );
-
-      if (
-        response.data.message === "Soft skill attendance marked successfully"
-      ) {
+  
+      if (response.data.message === "Soft skill attendance marked successfully") {
         setSoftSkillHasMarked(true);
         setSoftSkillMarkingTime(new Date().toISOString());
+        setSoftSkillTotalAttendance(prev => prev + 1); // Add this line to increment the total
         localStorage.removeItem("softLinkId");
       }
     } catch (err) {
