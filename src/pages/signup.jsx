@@ -2,9 +2,14 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-// Axios configuration
+// Axios global configuration
 axios.defaults.withCredentials = true;
-axios.defaults.headers.common['Accept'] = 'application/json';
+axios.defaults.headers.common = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json',
+  'X-Requested-With': 'XMLHttpRequest',
+  'Origin': window.location.origin
+};
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -33,7 +38,14 @@ const SignUp = () => {
     setSuccess("");
 
     try {
-      const response = await axios.post("https://attendancebackend-gjjw.onrender.com/signup", formData);
+      const response = await axios.post("https://attendancebackend-gjjw.onrender.com/signup", formData, {
+        withCredentials: true,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      });
       
       if (response.data.success) {
         setSuccess(response.data.message);

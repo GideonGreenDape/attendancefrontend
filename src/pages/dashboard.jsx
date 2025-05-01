@@ -7,9 +7,13 @@ import {
   CheckCircleIcon,
 } from "@heroicons/react/24/outline";
 
-// Axios configuration
+// Axios global configuration
 axios.defaults.withCredentials = true;
-axios.defaults.headers.common['Accept'] = 'application/json';
+axios.defaults.headers.common = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json',
+  'X-Requested-With': 'XMLHttpRequest'
+};
 
 
 const Dashboard = () => {
@@ -46,7 +50,14 @@ const Dashboard = () => {
         try {
           // Regular attendance check
           const response = await axios.get(
-            `https://attendancebackend-gjjw.onrender.com/performance/check/${parsedDetails.student_id}`
+            `https://attendancebackend-gjjw.onrender.com/performance/check/${parsedDetails.student_id}`, {
+              withCredentials: true,
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+              }
+            }
           );
           console.log("Regular Check Response:", response.data);
           setHasMarked(response.data.data.hasMarked);
@@ -61,7 +72,14 @@ const Dashboard = () => {
 
           // Soft skills attendance check
           const softSkillResponse = await axios.get(
-            `https://attendancebackend-gjjw.onrender.com/softskillperformance/check/${parsedDetails.student_id}`
+            `https://attendancebackend-gjjw.onrender.com/softskillperformance/check/${parsedDetails.student_id}`, {
+              withCredentials: true,
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+              }
+            }
           );
           console.log("Soft Skills Check Response:", softSkillResponse.data);
           setSoftSkillHasMarked(softSkillResponse.data.data.hasMarked);
@@ -69,7 +87,14 @@ const Dashboard = () => {
 
           // Soft skills attendance performance
           const softSkillPerfResponse = await axios.get(
-            `https://attendancebackend-gjjw.onrender.com/softskillperformance/${parsedDetails.student_id}`
+            `https://attendancebackend-gjjw.onrender.com/softskillperformance/${parsedDetails.student_id}`, {
+              withCredentials: true,
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+              }
+            }
           );
           setSoftSkillTotalAttendance(
             softSkillPerfResponse.data.data.totalDays
@@ -106,7 +131,14 @@ const Dashboard = () => {
 
     try {
       const response = await axios.get(
-        `https://attendancebackend-gjjw.onrender.com/validatelink/${validLinkId}`
+        `https://attendancebackend-gjjw.onrender.com/validatelink/${validLinkId}`, {
+          withCredentials: true,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        }
       );
       return response.data.valid;
     } catch (err) {
@@ -136,6 +168,13 @@ const Dashboard = () => {
         {
           student_id: userDetails.student_id,
           department: userDetails.department,
+        }, {
+          withCredentials: true,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
         }
       );
 
@@ -166,7 +205,14 @@ const Dashboard = () => {
 
     try {
       const response = await axios.get(
-        `https://attendancebackend-gjjw.onrender.com/softskillvalidate/${softLinkId}`
+        `https://attendancebackend-gjjw.onrender.com/softskillvalidate/${softLinkId}`, {
+          withCredentials: true,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        }
       );
       return response.data.valid;
     } catch (err) {
@@ -197,6 +243,13 @@ const Dashboard = () => {
         {
           student_id: userDetails.student_id,
           department: userDetails.department,
+        }, {
+          withCredentials: true,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
         }
       );
   

@@ -3,9 +3,14 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
-// Axios configuration
+// Axios global configuration
 axios.defaults.withCredentials = true;
-axios.defaults.headers.common['Accept'] = 'application/json';
+axios.defaults.headers.common = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json',
+  'X-Requested-With': 'XMLHttpRequest',
+  'Origin': window.location.origin
+};
 
 const HomePage = () => {
   const [loading, setLoading] = useState(true);
@@ -16,7 +21,14 @@ const HomePage = () => {
   useEffect(() => {
     const checkLinkValidity = async () => {
       try {
-        const response = await axios.get(`https://attendancebackend-gjjw.onrender.com/validatelink/${id}`);
+        const response = await axios.get(`https://attendancebackend-gjjw.onrender.com/validatelink/${id}`, {
+          withCredentials: true,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        });
         
         if (response.data.valid) {
           // Store the valid ID in localStorage

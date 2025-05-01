@@ -3,9 +3,14 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 
-// Axios configuration
+// Axios global configuration
 axios.defaults.withCredentials = true;
-axios.defaults.headers.common['Accept'] = 'application/json';
+axios.defaults.headers.common = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json',
+  'X-Requested-With': 'XMLHttpRequest',
+  'Origin': window.location.origin
+};
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -35,11 +40,12 @@ const SignIn = () => {
       const response = await axios.post("https://attendancebackend-gjjw.onrender.com/signin", {
         student_id: formData.student_id,
         password: formData.password,
-      },{
-        credentials: 'include',
+      }, {
+        withCredentials: true,
         headers: {
+          'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'X-Requested-With': 'XMLHttpRequest'
         }
       });
 
@@ -73,7 +79,7 @@ const SignIn = () => {
       <div className="max-w-md w-full space-y-8">
         <div>
           <h1 className="font-lato text-center text-lg sm:text-3xl font-bold text-indigo-600">
-          MyDreamConnect Cohort 3 Attendance System
+          MyDreamConnect Attendance Management System
           </h1>
           <h2 className="font-lato mt-8 text-center text-base sm:text-xl font-extrabold text-gray-700">
             Sign in to your account

@@ -3,9 +3,6 @@ import { motion } from 'framer-motion';
 import { CheckCircleIcon } from '@heroicons/react/24/outline';
 
 
-// Axios configuration
-axios.defaults.withCredentials = true;
-axios.defaults.headers.common['Accept'] = 'application/json';
 
 const GeneralPage = () => {
   const navigate = useNavigate();
@@ -55,7 +52,7 @@ const GeneralPage = () => {
           {/* Description Section */}
           <div className="mb-8">
             <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-              Welcome to MVC's digital attendance platform. Designed to make tracking attendance 
+              Welcome to MyDreamConnect digital attendance platform. Designed to make tracking attendance 
               seamless and efficient for both students and administrators.
             </p>
           </div>

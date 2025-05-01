@@ -4,9 +4,14 @@ import axios from "axios";
 import { ClipboardDocumentIcon } from "@heroicons/react/24/outline";
 
 
-// Axios configuration
+// Axios global configuration
 axios.defaults.withCredentials = true;
-axios.defaults.headers.common['Accept'] = 'application/json';
+axios.defaults.headers.common = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json',
+  'X-Requested-With': 'XMLHttpRequest',
+  'Origin': window.location.origin
+};
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -34,7 +39,14 @@ const AdminDashboard = () => {
   const fetchStudentData = async () => {
     try {
       const response = await axios.get(
-        "https://attendancebackend-gjjw.onrender.com/fetchallstudentattendance"
+        "https://attendancebackend-gjjw.onrender.com/fetchallstudentattendance",{
+          withCredentials: true,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        }
       );
       if (response.data.success) {
         // Create a merged data structure for the table
@@ -64,7 +76,14 @@ const AdminDashboard = () => {
     setError("");
     try {
       const response = await axios.post(
-        "https://attendancebackend-gjjw.onrender.com/generatelink/"
+        "https://attendancebackend-gjjw.onrender.com/generatelink/",{},{
+          withCredentials: true,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        }
       );
       const baseUrl = window.location.origin;
       setTemporaryLink(`${baseUrl}/link/${response.data.token}`);
@@ -91,7 +110,14 @@ const AdminDashboard = () => {
     setError("");
     try {
       const response = await axios.post(
-        "https://attendancebackend-gjjw.onrender.com/softskillattendance"
+        "https://attendancebackend-gjjw.onrender.com/softskillattendance",{},{
+          withCredentials: true,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        }
       );
       const baseUrl = window.location.origin;
       setSoftSkillLink(`${baseUrl}/softlink/${response.data.token}`);
