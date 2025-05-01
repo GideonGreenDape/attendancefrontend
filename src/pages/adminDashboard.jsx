@@ -167,13 +167,13 @@ const AdminDashboard = () => {
   return (
     <>
       <Header />
-      <div className="font-lato min-h-screen bg-gradient-to-br from-burnt-orange-50 via-white to-brand-green-50 p-3 sm:p-6 lg:p-8 pt-20 sm:pt-24">
+      <div className="font-lato min-h-screen bg-gradient-to-br from-burnt-orange-50 via-white to-brand-green-50 p-3 sm:p-6 lg:p-8 pt-24 sm:pt-28 md:pt-32">
         <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
-           {/* Welcome Section - More compact on mobile */}
+          {/* Welcome Section - More compact on mobile */}
            <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-lg shadow-md p-4 sm:p-6"
+            className="bg-white rounded-lg shadow-md p-4 sm:p-6 mt-[65px]"
           >
             <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-burnt-orange-500">
               Welcome, {adminDetails?.username}
