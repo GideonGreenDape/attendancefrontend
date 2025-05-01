@@ -51,7 +51,7 @@ const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: "/softlink/:id",
+    path: "/softskills/:id",
     element: <SoftLinkPage />,
   },
 ]);
