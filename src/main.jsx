@@ -42,10 +42,10 @@ const router = createBrowserRouter([
     path: "/admin-dashboard",
     element: <AdminDashboard />,
   },
-  {
-    path: "*",
-    element: <ErrorPage />,
-  },
+  // {
+  //   path: "*",
+  //   element: <ErrorPage />,
+  // },
   {
     path: "/link/:id",
     element: <HomePage />,
