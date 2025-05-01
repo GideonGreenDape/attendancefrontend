@@ -2,6 +2,10 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+// Axios configuration
+axios.defaults.withCredentials = true;
+axios.defaults.headers.common['Accept'] = 'application/json';
+
 const SignUp = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({

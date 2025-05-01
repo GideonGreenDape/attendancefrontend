@@ -2,6 +2,11 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+
+// Axios configuration
+axios.defaults.withCredentials = true;
+axios.defaults.headers.common['Accept'] = 'application/json';
+
 const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

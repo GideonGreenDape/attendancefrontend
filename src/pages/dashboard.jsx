@@ -7,6 +7,11 @@ import {
   CheckCircleIcon,
 } from "@heroicons/react/24/outline";
 
+// Axios configuration
+axios.defaults.withCredentials = true;
+axios.defaults.headers.common['Accept'] = 'application/json';
+
+
 const Dashboard = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);

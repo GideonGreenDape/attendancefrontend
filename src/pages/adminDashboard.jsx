@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ClipboardDocumentIcon } from "@heroicons/react/24/outline";
 
+
+// Axios configuration
+axios.defaults.withCredentials = true;
+axios.defaults.headers.common['Accept'] = 'application/json';
+
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [adminDetails, setAdminDetails] = useState(null);

@@ -2,6 +2,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
+// Axios configuration
+axios.defaults.withCredentials = true;
+axios.defaults.headers.common['Accept'] = 'application/json';
+
 const SignIn = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -30,6 +35,12 @@ const SignIn = () => {
       const response = await axios.post("https://attendancebackend-gjjw.onrender.com/signin", {
         student_id: formData.student_id,
         password: formData.password,
+      },{
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
       });
 
       // Save user details to localStorage
