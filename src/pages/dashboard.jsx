@@ -6,6 +6,7 @@ import {
   ClipboardDocumentCheckIcon,
   CheckCircleIcon,
 } from "@heroicons/react/24/outline";
+import Header from "../components/header"
 
 // Axios global configuration
 axios.defaults.withCredentials = true;
@@ -269,34 +270,38 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-burnt-orange-50 via-white to-brand-green-50">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-burnt-orange-500"></div>
       </div>
     );
   }
 
-  return (
-    <div className="font-lato min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-lg shadow-lg p-6 mb-6"
-        >
-          <h1 className="text-2xl font-lato font-bold text-gray-800 mb-2">
-            Welcome, {userDetails?.firstname} {userDetails?.lastname}
-          </h1>
-          <p className="text-gray-600  font-poppins ">
-            Department: {userDetails?.department}
-          </p>
-        </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+  return (
+    <>
+      <Header />
+      <div className="font-lato min-h-screen bg-gradient-to-br from-burnt-orange-50 via-white to-brand-green-50 p-4 sm:p-6 lg:p-8 pt-20 sm:pt-24">
+        <div className="max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="bg-white rounded-lg shadow-lg p-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-white rounded-lg shadow-lg p-6 mb-6"
           >
+            <h1 className="text-2xl font-lato font-bold text-burnt-orange-500 mb-2">
+              Welcome, {userDetails?.firstname} {userDetails?.lastname}
+            </h1>
+            <p className="text-brand-green-500 font-poppins">
+              Department: {userDetails?.department}
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {/* Update Regular Attendance Card */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="bg-white rounded-lg shadow-lg p-6"
+            >
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-lato font-semibold text-gray-800">
                 Today's Attendance
@@ -313,16 +318,15 @@ const Dashboard = () => {
             ) : (
               <div className="space-y-4">
                 <button
-                  onClick={markAttendance}
-                  disabled={markingAttendance}
-                  className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md
-                  hover:bg-indigo-700 focus:outline-none focus:ring-2 
-                  focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50
-                  transition-colors duration-200"
-                >
-                  {markingAttendance ? "Marking..." : "Mark Attendance"}
-                </button>
-
+                onClick={markAttendance}
+                disabled={markingAttendance}
+                className="w-full bg-burnt-orange-500 text-white py-2 px-4 rounded-md
+                hover:bg-burnt-orange-600 focus:outline-none focus:ring-2 
+                focus:ring-burnt-orange-500 focus:ring-offset-2 disabled:opacity-50
+                transition-colors duration-200"
+              >
+                {markingAttendance ? "Marking..." : "Mark Attendance"}
+              </button>
                 {linkMessage && (
                   <div className="text-sm text-amber-600 bg-amber-50 p-3 rounded-md">
                     {linkMessage}
@@ -353,17 +357,15 @@ const Dashboard = () => {
             ) : (
               <div className="space-y-4">
                 <button
-                  onClick={markSoftSkillAttendance}
-                  disabled={markingSoftSkill}
-                  className="w-full bg-purple-600 text-white py-2 px-4 rounded-md
-          hover:bg-purple-700 focus:outline-none focus:ring-2 
-          focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50
-          transition-colors duration-200"
-                >
-                  {markingSoftSkill
-                    ? "Marking..."
-                    : "Mark Soft Skills Attendance"}
-                </button>
+                onClick={markSoftSkillAttendance}
+                disabled={markingSoftSkill}
+                className="w-full bg-brand-green-500 text-white py-2 px-4 rounded-md
+                hover:bg-brand-green-600 focus:outline-none focus:ring-2 
+                focus:ring-brand-green-500 focus:ring-offset-2 disabled:opacity-50
+                transition-colors duration-200"
+              >
+                {markingSoftSkill ? "Marking..." : "Mark Soft Skills Attendance"}
+              </button>
 
                 {softSkillMessage && (
                   <div className="text-sm text-amber-600 bg-amber-50 p-3 rounded-md">
@@ -422,6 +424,7 @@ const Dashboard = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

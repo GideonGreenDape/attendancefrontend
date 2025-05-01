@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ClipboardDocumentIcon } from "@heroicons/react/24/outline";
-
+import Header  from '../components/header';
+import {motion} from 'framer-motion';
 
 // Axios global configuration
 axios.defaults.withCredentials = true;
@@ -164,48 +165,58 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="font-lato min-h-screen bg-gray-50 p-3 sm:p-6 lg:p-8">
-      <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
-        {/* Welcome Section - More compact on mobile */}
-        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
-          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">
-            Welcome, {adminDetails?.username}
-          </h1>
-          <p className="text-sm sm:text-base font-poppins text-gray-600">
-            Role: {adminDetails?.role}
-          </p>
-        </div>
+    <>
+      <Header />
+      <div className="font-lato min-h-screen bg-gradient-to-br from-burnt-orange-50 via-white to-brand-green-50 p-3 sm:p-6 lg:p-8 pt-20 sm:pt-24">
+        <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
+           {/* Welcome Section - More compact on mobile */}
+           <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-white rounded-lg shadow-md p-4 sm:p-6"
+          >
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-burnt-orange-500">
+              Welcome, {adminDetails?.username}
+            </h1>
+            <p className="text-sm sm:text-base font-poppins text-brand-green-500">
+              Role: {adminDetails?.role}
+            </p>
+          </motion.div>
 
         {/* Link Generation Section - Stacked on mobile */}
-        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
-          <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-            <button
-              onClick={generateTemporaryLink}
-              disabled={loading}
-              className="w-full sm:w-auto bg-indigo-600 text-white px-4 py-2 rounded-md 
-              hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 
-              focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
-            >
-              {loading ? "Generating..." : "Generate Attendance Token"}
-            </button>
+        <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-white rounded-lg shadow-md p-4 sm:p-6"
+          >
+            <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+              <button
+                onClick={generateTemporaryLink}
+                disabled={loading}
+                className="w-full sm:w-auto bg-burnt-orange-500 text-white px-4 py-2 rounded-md 
+                hover:bg-burnt-orange-600 focus:outline-none focus:ring-2 focus:ring-burnt-orange-500 
+                focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+              >
+                {loading ? "Generating..." : "Generate Attendance Token"}
+              </button>
 
-            {temporaryLink && (
-              <div className="flex-1 flex items-center gap-2 bg-gray-50 p-2 rounded-md">
-                <input
-                  type="text"
-                  readOnly
-                  value={temporaryLink}
-                  className="flex-1 bg-transparent border-none focus:outline-none text-xs sm:text-sm overflow-x-auto"
-                />
-                <button
-                  onClick={copyToClipboard}
-                  className="text-indigo-600 hover:text-indigo-700 flex-shrink-0"
-                >
-                  <ClipboardDocumentIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                </button>
-              </div>
-            )}
-          </div>
+              {temporaryLink && (
+                <div className="flex-1 flex items-center gap-2 bg-gray-50 p-2 rounded-md">
+                  <input
+                    type="text"
+                    readOnly
+                    value={temporaryLink}
+                    className="flex-1 bg-transparent border-none focus:outline-none text-xs sm:text-sm overflow-x-auto"
+                  />
+                  <button
+                    onClick={copyToClipboard}
+                    className="text-burnt-orange-500 hover:text-burnt-orange-600 flex-shrink-0"
+                  >
+                    <ClipboardDocumentIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                  </button>
+                </div>
+              )}
+            </div>
 
           {temporaryLink && (
             <p className="mt-2 text-xs sm:text-sm text-gray-600">
@@ -218,37 +229,41 @@ const AdminDashboard = () => {
               Link copied!
             </p>
           )}
-        </div>
+        </motion.div>
 
-        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
-          <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-            <button
-              onClick={generateSoftSkillLink}
-              disabled={loading}
-              className="w-full sm:w-auto bg-purple-600 text-white px-4 py-2 rounded-md 
-        hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 
-        focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
-            >
-              {loading ? "Generating..." : "Generate Soft Skills Token"}
-            </button>
+        <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-white rounded-lg shadow-md p-4 sm:p-6"
+          >
+            <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+              <button
+                onClick={generateSoftSkillLink}
+                disabled={loading}
+                className="w-full sm:w-auto bg-brand-green-500 text-white px-4 py-2 rounded-md 
+                hover:bg-brand-green-600 focus:outline-none focus:ring-2 focus:ring-brand-green-500 
+                focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+              >
+                {loading ? "Generating..." : "Generate Soft Skills Token"}
+              </button>
 
-            {softSkillLink && (
-              <div className="flex-1 flex items-center gap-2 bg-gray-50 p-2 rounded-md">
-                <input
-                  type="text"
-                  readOnly
-                  value={softSkillLink}
-                  className="flex-1 bg-transparent border-none focus:outline-none text-xs sm:text-sm overflow-x-auto"
-                />
-                <button
-                  onClick={copySoftSkillLink}
-                  className="text-purple-600 hover:text-purple-700 flex-shrink-0"
-                >
-                  <ClipboardDocumentIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                </button>
-              </div>
-            )}
-          </div>
+              {softSkillLink && (
+                <div className="flex-1 flex items-center gap-2 bg-gray-50 p-2 rounded-md">
+                  <input
+                    type="text"
+                    readOnly
+                    value={softSkillLink}
+                    className="flex-1 bg-transparent border-none focus:outline-none text-xs sm:text-sm overflow-x-auto"
+                  />
+                  <button
+                    onClick={copySoftSkillLink}
+                    className="text-brand-green-500 hover:text-brand-green-600 flex-shrink-0"
+                  >
+                    <ClipboardDocumentIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                  </button>
+                </div>
+              )}
+            </div>
 
           {softSkillLink && (
             <p className="mt-2 text-xs sm:text-sm text-gray-600">
@@ -262,29 +277,33 @@ const AdminDashboard = () => {
               Soft skills link copied!
             </p>
           )}
-        </div>
+        </motion.div>
 
         {/* Student Attendance Table Section - Scrollable on mobile */}
-        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 space-y-2 sm:space-y-0">
-            <h2 className="text-lg sm:text-xl font-semibold text-gray-900">
-              All Student Attendance
-            </h2>
-            <button
-              onClick={exportToDoc}
-              className="w-full sm:w-auto bg-green-600 text-white px-4 py-2 rounded-md 
-              hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 
-              focus:ring-offset-2 text-sm sm:text-base"
-            >
-              Export as DOC
-            </button>
-          </div>
+        <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-white rounded-lg shadow-md p-4 sm:p-6"
+          >
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 space-y-2 sm:space-y-0">
+              <h2 className="text-lg sm:text-xl font-semibold text-burnt-orange-500">
+                All Student Attendance
+              </h2>
+              <button
+                onClick={exportToDoc}
+                className="w-full sm:w-auto bg-brand-green-500 text-white px-4 py-2 rounded-md 
+                hover:bg-brand-green-600 focus:outline-none focus:ring-2 focus:ring-brand-green-500 
+                focus:ring-offset-2 text-sm sm:text-base"
+              >
+                Export as DOC
+              </button>
+            </div>
 
-          <div className="-mx-4 sm:mx-0 overflow-x-auto">
-            <div className="inline-block min-w-full align-middle">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
+            <div className="-mx-4 sm:mx-0 overflow-x-auto">
+              <div className="inline-block min-w-full align-middle">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
                     <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Student ID
                     </th>
@@ -294,18 +313,12 @@ const AdminDashboard = () => {
                     <th className="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Department
                     </th>
-                    <th
-                      colSpan="3"
-                      className="px-3 sm:px-6 py-2 sm:py-3 text-center text-xs font-medium text-indigo-700 uppercase tracking-wider bg-indigo-50"
-                    >
-                      Regular Attendance
-                    </th>
-                    <th
-                      colSpan="3"
-                      className="px-3 sm:px-6 py-2 sm:py-3 text-center text-xs font-medium text-purple-700 uppercase tracking-wider bg-purple-50"
-                    >
-                      Soft Skills Attendance
-                    </th>
+                    <th colSpan="3" className="px-3 sm:px-6 py-2 sm:py-3 text-center text-xs font-medium text-burnt-orange-500 uppercase tracking-wider bg-burnt-orange-50">
+                        Regular Attendance
+                      </th>
+                      <th colSpan="3" className="px-3 sm:px-6 py-2 sm:py-3 text-center text-xs font-medium text-brand-green-500 uppercase tracking-wider bg-brand-green-50">
+                        Soft Skills Attendance
+                      </th>
                   </tr>
                   <tr>
                     <th className="px-3 sm:px-6 py-2 sm:py-3"></th>
@@ -365,17 +378,23 @@ const AdminDashboard = () => {
                   ))}
                 </tbody>
               </table>
+              </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
 
-        {error && (
-          <div className="rounded-md bg-red-50 p-3 sm:p-4">
-            <p className="text-xs sm:text-sm text-red-700">{error}</p>
-          </div>
-        )}
+         {/* Error message */}
+         {error && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="rounded-md bg-red-50 p-3 sm:p-4"
+            >
+              <p className="text-xs sm:text-sm text-red-700">{error}</p>
+            </motion.div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

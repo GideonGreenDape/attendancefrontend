@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -75,13 +76,18 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-burnt-orange-50 via-white to-brand-green-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="max-w-md w-full space-y-8 relative z-10"
+      >
         <div>
-          <h1 className="font-lato text-center text-lg sm:text-3xl font-bold text-indigo-600">
-          MyDreamConnect Attendance Management System
+          <h1 className="font-lato text-center text-lg sm:text-2xl font-bold text-burnt-orange-500">
+            MyDreamConnect Attendance Management System
           </h1>
-          <h2 className="font-lato mt-8 text-center text-base sm:text-xl font-extrabold text-gray-700">
+          <h2 className="font-lato mt-8 text-center text-base sm:text-xl font-extrabold text-brand-green-500">
             Sign in to your account
           </h2>
         </div>
@@ -101,10 +107,10 @@ const SignIn = () => {
               </label>
               <input
                 id="student_id"
-                name="student_id" // Changed from studentId to student_id
+                name="student_id"
                 type="text"
                 required
-                className="font-lato appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="font-poppins appearance-none rounded-t-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-brand-green-500 focus:border-brand-green-500 focus:z-10 sm:text-sm"
                 placeholder="Student ID"
                 value={formData.student_id}
                 onChange={handleChange}
@@ -119,7 +125,7 @@ const SignIn = () => {
                 name="password"
                 type="password"
                 required
-                className="font-lato appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="font-poppins appearance-none rounded-b-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-brand-green-500 focus:border-brand-green-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
@@ -128,18 +134,37 @@ const SignIn = () => {
           </div>
 
           <div className="w-full max-w-[280px]">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               type="submit"
               disabled={loading}
-              className="font-lato group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+              className="font-poppins group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-burnt-orange-500 hover:bg-burnt-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-burnt-orange-500 disabled:opacity-50 transition-colors duration-200"
             >
               {loading ? "Signing in..." : "Sign in"}
-            </button>
+            </motion.button>
           </div>
         </form>
+      </motion.div>
+
+      {/* Animated background elements */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.7 }}
+          transition={{ duration: 1 }}
+          className="absolute top-1/4 left-1/4 w-64 h-64 bg-burnt-orange-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"
+        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.7 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="absolute top-1/3 right-1/4 w-64 h-64 bg-brand-green-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"
+        />
       </div>
     </div>
   );
+
 };
 
 export default SignIn;

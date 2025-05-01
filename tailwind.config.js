@@ -17,6 +17,22 @@ export default {
       animation: {
         blob: "blob 7s infinite",
       },
+      colors: {
+        'burnt-orange': {
+          50: '#fff3e5',
+          100: '#ffe1cc',
+          500: '#cc5500',  // Main burnt orange
+          600: '#b84c00',
+          700: '#a34300',
+        },
+        'brand-green': {
+          50: '#e6f0eb',
+          100: '#cce0d6',
+          500: '#006400',  // Main dark green
+          600: '#005a00',
+          700: '#004f00',
+        }
+      },
       keyframes: {
         blob: {
           "0%": {
